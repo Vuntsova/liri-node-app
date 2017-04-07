@@ -1,6 +1,6 @@
 //Declare Variables
 var keys = require("./keys.js");
-console.log(keys.twitterKeys);
+// console.log(keys.twitterKeys);
 var Twitter = require('twitter');
 var command = process.argv[2];
 var values = process.argv[3];
@@ -32,23 +32,28 @@ function tweetsFunction() {
         if(error){
             console.log(error);
         }else if (!error) {
+        for (var i = 0; i<21; i++){
+            console.log("\n--------------------------------\n");
+            console.log("Tweet Number: " + i);
+            console.log(tweets[i]["text"]);
+            console.log("\n--------------------------------\n");
+        }
 
-            console.log(tweets[10].text);
         }
     });
  console.log("Here is a tweet")
-};
+}
 //Function for getting Spotify
 function spotifyFunction() {
     console.log("Here is spotify")
-};
+}
 //Function for getting Movies
 function movieFunction() {
     console.log("Here is a movie")
 
-};
+}
 //Function for getting Things
 function sayFunction() {
     console.log("Here is something")
 
-};
+}
