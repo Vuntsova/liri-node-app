@@ -5,6 +5,8 @@ var Twitter = require('twitter');
 var spotify = require('spotify');
 var command = process.argv[2];
 var values = process.argv[3];
+var request = require('request');
+
 
 
 //Find out what your commands are
@@ -57,7 +59,7 @@ function spotifyFunction(values) {
          var songPreview = data['tracks']['items'][1]['external_urls']['spotify'];for (var i = 0; i<3; i++) {
          var track = data['tracks']['items'][1]['name'];
 
-             console.log("\n===========================\n");
+             console.log('\n===========================\n');
              console.log('Artist: ' + artists);
              console.log('Track: ' + track);
              console.log('Album ' + album);
@@ -71,8 +73,21 @@ function spotifyFunction(values) {
 
 //Function for getting Movies
 function movieFunction() {
-    console.log("Here is a movie")
+      request("http://www.omdbapi.com/?t=" + values +"&tomatoes=true", function (error, response, body) {
+      console.log('error:', error); // Print the error if one occurred
+      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received // console.log('Here is a movie')
 
+
+          var movie = JSON.parse(body);
+          console.log("Title: " + movie.Title);
+          console.log("Year: " + movie.Year);
+          console.log("Year: " + movie.imdbRating);
+          console.log("Year: " + movie.Country);
+          console.log("Year: " + movie.Language);
+          console.log("Year: " + movie.Plot);
+          console.log("Rotton Tomatoes Rating: " + movie.tomatoRating);
+          console.log("Rotton URL: " + movie.tomatoURL);
+          });
 }
 //Function for getting Things
 function sayFunction() {
